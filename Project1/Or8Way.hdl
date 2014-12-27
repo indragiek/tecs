@@ -13,31 +13,13 @@ CHIP Or8Way {
     OUT out;
 
     PARTS:
-    Nand(a=in[0], b=in[0], out=n0);
-    Nand(a=in[1], b=in[1], out=n1);
-    Nand(a=n0, b=n1, out=or01);
+    Or(a=in[0], b=in[1], out=or01);
+    Or(a=in[2], b=in[3], out=or23);
+    Or(a=or01, b=or23, out=or0123);
 
-    Nand(a=in[2], b=in[2], out=n2);
-    Nand(a=in[3], b=in[3], out=n3);
-    Nand(a=n2, b=n3, out=or23);
+    Or(a=in[4], b=in[5], out=or45);
+    Or(a=in[6], b=in[7], out=or67);
+    Or(a=or45, b=or67, out=or4567);
 
-    Nand(a=or01, b=or01, out=n01);
-    Nand(a=or23, b=or23, out=n23);
-    Nand(a=n01, b=n23, out=or0123);
-
-    Nand(a=in[4], b=in[4], out=n4);
-    Nand(a=in[5], b=in[5], out=n5);
-    Nand(a=n4, b=n5, out=or45);
-
-    Nand(a=in[6], b=in[6], out=n6);
-    Nand(a=in[7], b=in[7], out=n7);
-    Nand(a=n6, b=n7, out=or67);
-
-    Nand(a=or45, b=or45, out=n45);
-    Nand(a=or67, b=or67, out=n67);
-    Nand(a=n45, b=n67, out=or4567);
-
-    Nand(a=or0123, b=or0123, out=n0123);
-    Nand(a=or4567, b=or4567, out=n4567);
-    Nand(a=n0123, b=n4567, out=out);
+    Or(a=or0123, b=or4567, out=out);
 }
