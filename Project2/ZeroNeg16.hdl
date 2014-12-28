@@ -1,0 +1,18 @@
+// Created by Indragie Karunaratne
+
+/**
+ * Manipulates a 16-bit input based on control inputs.
+ * if (z == 1) set out = 0
+ * else set out = in
+ * if (n == 1) set out = !out
+ */
+
+CHIP ZeroNeg16 {
+    IN in[16], z, n;
+    OUT out[16];
+
+    PARTS:
+    Mux16(a=in, b=false, sel=z, out=zin);
+    Not16(in=zin, out=nin);
+    Mux16(a=zin, b=nin, sel=n, out=out);
+}
